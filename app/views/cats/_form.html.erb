@@ -1,0 +1,41 @@
+<%= form_for @cat, remote: true do |form| %>
+  <% if @cat.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@cat.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @cat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  
+  <p>
+    <%= form.label :age %><br>
+    <%= form.number_field :age %>
+  </p>
+  
+  <p>
+    <%= form.label :weight %><br>
+    <%= form.text_area :weight %>
+  </p>
+  
+  <p>
+    <%= form.label :eye_color %><br>
+    <%= form.text_area :eye_color %>
+  </p>
+
+  <% if @cat.persisted? %> 
+    <%= form.submit 'Atualizar' %>
+  <% else %>
+    <%= form.submit 'Criar' %>
+  <% end %>
+<% end %>
